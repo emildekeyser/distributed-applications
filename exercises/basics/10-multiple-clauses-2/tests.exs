@@ -10,17 +10,20 @@ defmodule Tests do
   data = [
     { 0, 0 },
     { 1, 1 },
-    { -1, 1 },
-    { 2, 2 },
-    { -2, 2 },
+    { 2, 1 },
+    { 3, 2 },
+    { 4, 3 },
+    { 5, 5 },
+    { 6, 8 },
+    { 7, 13 },
   ]
 
   for { input, expected } <- data do
     @input input
     @expected expected
 
-    test "Absolute value of #{input}" do
-      assert Numbers.abs(@input) == @expected
+    test "fib(#{input}) must be #{expected}" do
+      assert Fibonacci.fib(@input) === @expected
     end
   end
 end

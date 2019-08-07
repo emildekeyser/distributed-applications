@@ -1,5 +1,5 @@
 defmodule Exercise do
-  defp range(a, b) when a < b, do: [a | range(a + 1, b)]
+  defp range(a, b) when a < b, do: a..(b-1)
   defp range(_, _), do: []
 
   def prime?(n) do
