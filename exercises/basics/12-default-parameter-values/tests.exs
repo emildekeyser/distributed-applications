@@ -4,64 +4,49 @@ file = System.get_env("DA_TESTFILE") || "student.exs"
 Code.load_file(file, __DIR__)
 
 
+defmodule Aux do
+  defmacro check(that: block, is_equal_to: expected) do
+    str = Macro.to_string(block)
+    quote do
+      test "#{unquote(str)} should be equal to #{unquote(expected)}" do
+        assert unquote(block) == unquote(expected)
+      end
+    end
+  end
+end
+
+
 defmodule Tests do
   use ExUnit.Case, async: true
+  import Aux
 
-  data2 = [
-    { 0, 0 },
-    { 1, 1 },
-    { 2, 3 },
-    { 5, 15 },
-    { 100, 5050 },
-  ]
 
-  data3 = [
-    { 0, 0, 0 },
-    { 1, 0, 1 },
-    { 2, 0, 3 },
-    { 3, 0, 6 },
-    { 3, 1, 6 },
-    { 3, 2, 5 },
-    { 3, 3, 3 },
-    { 100, 10, 5005 },
-  ]
+  check that: Math.range_sum(0), is_equal_to: 0
+  check that: Math.range_sum(1), is_equal_to: 1
+  check that: Math.range_sum(2), is_equal_to: 3
+  check that: Math.range_sum(5), is_equal_to: 15
+  check that: Math.range_sum(100), is_equal_to: 5050
 
-  data4 = [
-    { 0, 0, 2, 0 },
-    { 2, 0, 2, 2 },
-    { 10, 0, 2, 30 },
-    { 10, 0, 2, 30 },
-    { 10, 0, 3, 18 },
-    { 100, 50, 4, 962 },
-  ]
+  check that: Math.range_sum(0, 0), is_equal_to: 0
+  check that: Math.range_sum(1, 0), is_equal_to: 1
+  check that: Math.range_sum(2, 0), is_equal_to: 3
+  check that: Math.range_sum(3, 0), is_equal_to: 6
+  check that: Math.range_sum(3, 1), is_equal_to: 6
+  check that: Math.range_sum(3, 2), is_equal_to: 5
+  check that: Math.range_sum(3, 3), is_equal_to: 3
+  check that: Math.range_sum(100, 10), is_equal_to: 5005
 
-  for { a, expected } <- data2 do
-    @a a
-    @expected expected
-
-    test "range_sum(#{@a}) must equal #{@expected}" do
-      assert Math.range_sum(@a) === @expected
-    end
-  end
-
-  for { a, b, expected } <- data3 do
-    @a a
-    @b b
-    @expected expected
-
-    test "range_sum(#{@a}, #{@b}) must equal #{@expected}" do
-      assert Math.range_sum(@a, @b) === @expected
-    end
-  end
-
-  for { a, b, delta, expected } <- data3 do
-    @a a
-    @b b
-    @delta delta
-    @expected expected
-
-    test "range_sum(#{@a}, #{@b}, #{@delta}) must equal #{@expected}" do
-      assert Math.range_sum(@a, @b, @delta) === @expected
-    end
-  end
+  check that: Math.range_sum(0, 0, 1), is_equal_to: 0
+  check that: Math.range_sum(1, 0, 1), is_equal_to: 1
+  check that: Math.range_sum(2, 0, 1), is_equal_to: 3
+  check that: Math.range_sum(3, 0, 1), is_equal_to: 6
+  check that: Math.range_sum(3, 1, 1), is_equal_to: 6
+  check that: Math.range_sum(3, 2, 1), is_equal_to: 5
+  check that: Math.range_sum(3, 3, 1), is_equal_to: 3
+  check that: Math.range_sum(100, 10, 1), is_equal_to: 5005
+  check that: Math.range_sum(0, 0, 2), is_equal_to: 0
+  check that: Math.range_sum(2, 0, 2), is_equal_to: 2
+  check that: Math.range_sum(10, 0, 2), is_equal_to: 30
+  check that: Math.range_sum(10, 0, 3), is_equal_to: 18
+  check that: Math.range_sum(100, 50, 4), is_equal_to: 962
 end
