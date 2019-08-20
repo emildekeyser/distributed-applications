@@ -20,9 +20,9 @@ defmodule Tests do
   use ExUnit.Case, async: true
   import Aux
 
-  check that: abs(0), is_equal_to: 0
-  check that: abs(1), is_equal_to: 1
-  check that: abs(-1), is_equal_to: 1
-  check that: abs(2), is_equal_to: 2
-  check that: abs(-2), is_equal_to: 2
+  check that: Numbers.abs(0), is_equal_to: 0
+  check that: Numbers.abs(1), is_equal_to: 1
+  check that: Numbers.abs(-1), is_equal_to: 1
+  check that: Numbers.abs(2), is_equal_to: 2
+  check that: Numbers.abs(-2), is_equal_to: 2
 end
