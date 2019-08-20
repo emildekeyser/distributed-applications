@@ -15,12 +15,9 @@ defmodule Tests do
     { -2, 2 },
   ]
 
-  for { input, expected } <- data do
-    @input input
-    @expected expected
-
+  data |> Enum.each( fn {input, expected} ->
     test "Absolute value of #{input} should equal #{expected}" do
-      assert Numbers.abs(@input) == @expected
+      assert Numbers.abs(unquote(input)) == unquote(expected)
     end
-  end
+  end )
 end
