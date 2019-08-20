@@ -1,4 +1,4 @@
-defmodule Numbers do
+defmodule Sign do
   def sign(n) do
     cond do
       n > 0 -> 1
