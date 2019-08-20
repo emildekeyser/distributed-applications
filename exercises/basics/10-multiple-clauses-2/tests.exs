@@ -4,26 +4,28 @@ file = System.get_env("DA_TESTFILE") || "student.exs"
 Code.load_file(file, __DIR__)
 
 
-defmodule Tests do
-  use ExUnit.Case, async: true
-
-  data = [
-    { 0, 0 },
-    { 1, 1 },
-    { 2, 1 },
-    { 3, 2 },
-    { 4, 3 },
-    { 5, 5 },
-    { 6, 8 },
-    { 7, 13 },
-  ]
-
-  for { input, expected } <- data do
-    @input input
-    @expected expected
-
-    test "fib(#{input}) must be #{expected}" do
-      assert Fibonacci.fib(@input) === @expected
+defmodule Aux do
+  defmacro check(that: block, is_equal_to: expected) do
+    str = Macro.to_string(block)
+    quote do
+      test "#{unquote(str)} should be equal to #{unquote(expected)}" do
+        assert unquote(block) == unquote(expected)
+      end
     end
   end
+end
+
+defmodule Tests do
+  use ExUnit.Case, async: true
+  import Aux
+
+
+  check that: Fibonacci.fib(0), is_equal_to: 0
+  check that: Fibonacci.fib(1), is_equal_to: 1
+  check that: Fibonacci.fib(2), is_equal_to: 1
+  check that: Fibonacci.fib(3), is_equal_to: 2
+  check that: Fibonacci.fib(4), is_equal_to: 3
+  check that: Fibonacci.fib(5), is_equal_to: 5
+  check that: Fibonacci.fib(6), is_equal_to: 8
+  check that: Fibonacci.fib(7), is_equal_to: 13
 end
