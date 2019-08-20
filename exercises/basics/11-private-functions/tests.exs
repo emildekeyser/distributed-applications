@@ -3,29 +3,28 @@ ExUnit.start()
 file = System.get_env("DA_TESTFILE") || "student.exs"
 Code.load_file(file, __DIR__)
 
+defmodule Aux do
+  defmacro check(that: block, is_equal_to: expected) do
+    str = Macro.to_string(block)
+    quote do
+      test "#{unquote(str)} should be equal to #{unquote(expected)}" do
+        assert unquote(block) == unquote(expected)
+      end
+    end
+  end
+end
 
 defmodule Tests do
   use ExUnit.Case, async: true
+  import Aux
 
-  data = [
-    { 1, 0, 1 },
-    { 5, 0, 1 },
-    { 1, 1, 1 },
-    { 5, 1, 5 },
-    { 20, 1, 20 },
-    { 5, 2, 10 },
-    { 10, 2, 45 },
-    { 10, 5, 252 },
-    { 100, 50, 100891344545564193334812497256 },
-  ]
-
-  for { n, k, expected } <- data do
-    @n n
-    @k k
-    @expected expected
-
-    test "Binomial(#{@n}, #{@k}) must be equal to #{@expected}" do
-      assert Math.binomial(@n, @k) === @expected
-    end
-  end
+  check that: Math.binomial(1, 0), is_equal_to: 1
+  check that: Math.binomial(5, 0), is_equal_to: 1
+  check that: Math.binomial(1, 1), is_equal_to: 1
+  check that: Math.binomial(5, 1), is_equal_to: 5
+  check that: Math.binomial(20, 1), is_equal_to: 20
+  check that: Math.binomial(5, 2), is_equal_to: 10
+  check that: Math.binomial(10, 2), is_equal_to: 45
+  check that: Math.binomial(10, 5), is_equal_to: 252
+  check that: Math.binomial(100, 50), is_equal_to: 100891344545564193334812497256
 end
