@@ -4,24 +4,24 @@ file = System.get_env("DA_TESTFILE") || "student.exs"
 Code.load_file(file, __DIR__)
 
 
-defmodule Tests do
-  use ExUnit.Case, async: true
-
-  data = [
-    { 1, 1, 2000, "1-1-2000" },
-    { 2, 1, 2000, "2-1-2000" },
-    { 2, 3, 2000, "2-3-2000" },
-    { 2, 3, 2020, "2-3-2020" },
-  ]
-
-  for { day, month, year, expected } <- data do
-    @day day
-    @month month
-    @year year
-    @expected expected
-
-    test "Formatting #{day}-#{month}-#{year}" do
-      assert Date.format(@day, @month, @year) == @expected
+defmodule Aux do
+  defmacro check(that: block, is_equal_to: expected) do
+    str = Macro.to_string(block)
+    quote do
+      test "#{unquote(str)} should be equal to #{unquote(expected)}" do
+        assert unquote(block) == unquote(expected)
+      end
     end
   end
+end
+
+
+defmodule Tests do
+  use ExUnit.Case, async: true
+  import Aux
+
+  check that: Date.format(1, 1, 2000), is_equal_to: "1-1-2000"
+  check that: Date.format(2, 1, 2000), is_equal_to: "2-1-2000"
+  check that: Date.format(1, 2, 2000), is_equal_to: "1-2-2000"
+  check that: Date.format(1, 1, 2002), is_equal_to: "1-1-2002"
 end
