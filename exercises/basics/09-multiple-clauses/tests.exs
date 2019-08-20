@@ -19,7 +19,7 @@ defmodule Tests do
     @input input
     @expected expected
 
-    test "Absolute value of #{input}" do
+    test "Absolute value of #{input} should equal #{expected}" do
       assert Numbers.abs(@input) == @expected
     end
   end
