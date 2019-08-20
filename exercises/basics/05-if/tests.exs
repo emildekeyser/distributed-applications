@@ -4,25 +4,25 @@ file = System.get_env("DA_TESTFILE") || "student.exs"
 Code.load_file(file, __DIR__)
 
 
-defmodule Tests do
-  use ExUnit.Case, async: true
-
-  data = [
-    { 0, 0 },
-    { 1, 1 },
-    { -1, 1 },
-    { 2, 2 },
-    { -2, 2 },
-    { 1.5, 1.5 },
-    { -1.5, 1.5 },
-  ]
-
-  for { input, expected } <- data do
-    @input input
-    @expected expected
-
-    test "Absolute value of #{input}" do
-      assert Numbers.abs(@input) == @expected
+defmodule Aux do
+  defmacro check(that: block, is_equal_to: expected) do
+    str = Macro.to_string(block)
+    quote do
+      test "#{unquote(str)} should be equal to #{unquote(expected)}" do
+        assert unquote(block) == unquote(expected)
+      end
     end
   end
+end
+
+
+defmodule Tests do
+  use ExUnit.Case, async: true
+  import Aux
+
+  check that: Numbers.abs(0), is_equal_to: 0
+  check that: Numbers.abs(1), is_equal_to: 1
+  check that: Numbers.abs(-1), is_equal_to: 1
+  check that: Numbers.abs(2), is_equal_to: 2
+  check that: Numbers.abs(-2), is_equal_to: 2
 end
