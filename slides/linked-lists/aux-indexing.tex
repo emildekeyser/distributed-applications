@@ -1,0 +1,56 @@
+\begin{frame}
+    \frametitle{Indexing Array}
+    \begin{center}
+        \begin{tikzpicture}
+            \draw[help lines] (-2,0) grid (8,1);
+            \draw[thick] (0,0) grid (6,1);
+            \foreach \x in {0,...,5} {
+                \node[font=\tiny] at ($ (\x,0.5) + (0.5,0) $) { \texttt{xs[\x]} };
+            }
+            \draw[thick] (0,0) -- ++(0,-0.5);
+            \node[anchor=north,font=\ttfamily\tiny] at (0,-0.5) {start};
+            \draw[|-latex] (0,-.25) -- ++(4,0) node[midway,below,font=\tiny\ttfamily] {index * sizeof(T)};
+        \end{tikzpicture}
+    \end{center}
+    \vskip4mm
+    \structure{Algorithm}
+    \begin{itemize}
+        \item Memory location can be computed in a single step
+        \item \texttt{location = start + index * sizeof(T)}
+        \item Direct CPU support: only 1 instruction required
+        \item Explains zero-indexing
+        \item $O(1)$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Indexing Linked List}
+    \begin{center}
+        \begin{tikzpicture}[link/.style={thick,-latex}]
+            \path[use as bounding box] (0,0) rectangle (10,3);
+            \coordinate (p1) at (0,0);
+            \coordinate (p2) at (2,2);
+            \coordinate (p4) at (4,1);
+            \coordinate (p3) at (6,1);
+            \coordinate (p5) at (8,2);
+
+            \foreach \i in {1,...,5} {
+                \draw[thick] (p\i) rectangle ++(0.5,0.5);
+                \draw[thick] ($ (p\i) + (0.5,0) $) rectangle ++(0.5,0.5);
+            }
+
+            \draw[-latex] ($ (p1) + (0.75,0.25) $) to[bend right=30] (p2);
+            \draw[-latex] ($ (p2) + (0.75,0.25) $) to[bend left=30] ($ (p3) + (0,0.5) $);
+            \draw[-latex] ($ (p3) + (0.75,0.25) $) to[bend left=45] ($ (p4) + (0,0) $);
+            \draw[-latex] ($ (p4) + (0.75,0.25) $) to[bend left=45] ($ (p5) + (0,0.25) $);
+        \end{tikzpicture}
+    \end{center}
+    \vskip4mm
+    \structure{Algorithm}
+    \begin{itemize}
+        \item Nodes are scattered across memory
+        \item Follow \texttt{Next} until \texttt{Next == null}
+        \item Finding \texttt{n}th element takes \texttt{n} jumps
+        \item $O(n)$
+    \end{itemize}
+\end{frame}

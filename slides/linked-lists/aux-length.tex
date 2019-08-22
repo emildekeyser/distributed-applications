@@ -1,0 +1,44 @@
+\section{Determining Length}
+
+\frame{\tableofcontents[currentsubsection]}
+
+\begin{frame}
+    \frametitle{Length of Array}
+    \begin{itemize}
+        \item Array must keep track of Length
+        \item Computing length is immediate ($O(1)$)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Length of Linked List}
+    \begin{center}
+        \begin{tikzpicture}[link/.style={thick,-latex}]
+            \path[use as bounding box] (0,0) rectangle (10,1);
+
+            \foreach[count=\i] \x in {0,1.5,...,10} {
+                \coordinate (p\i) at (\x,0);
+                \draw[thick] (p\i) rectangle ++(0.5,0.5);
+                \draw[thick] ($ (p\i) + (0.5,0) $) rectangle ++(0.5,0.5);
+            }
+
+            \foreach[count=\i] \x in {0,1.5,...,8} {
+                \draw[-latex] ($ (p\i) + (0.75,0.25) $) to[bend left=45] ++(0.75,0.251);
+            }
+
+            \foreach \i/\label in {1/{start here},2/{second},3/{third},4/{fourth},5/{fifth},6/{sixth},7/{seventh and last}} {
+                \only<\i>{
+                    \node[font=\tiny] (label) at ($ (p\i) + (0,1.25) $) {\label};
+                    \draw[-latex] (label.south) -- ($ (p\i) + (0,.5) $);
+                }
+            }
+        \end{tikzpicture}
+    \end{center}
+    \vskip4mm
+    \structure{Algorithm}
+    \begin{itemize}
+        \item Follow nodes until we find \texttt{null}
+        \item Count number of jumps necessary
+        \item Takes longer for longer lists
+    \end{itemize}
+\end{frame}
