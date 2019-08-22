@@ -1,6 +1,6 @@
 \section{Memory Layout}
 
-\frame{\tableofcontents[currentsubsection]}
+\frame{\tableofcontents[currentsection]}
 
 \begin{frame}
     \frametitle{Arrays}
@@ -28,17 +28,21 @@
     \frametitle{Linked Lists}
     \begin{center}
         \begin{tikzpicture}[link/.style={thick,-latex},scale=0.8,transform shape]
-            \draw[help lines] (0,0) grid (10,4);
-            \draw[thick] (1,2) grid ++(2,1);
-            \draw[thick] (4,3) grid ++(2,1);
-            \draw[thick] (5,0) grid ++(2,1);
-            \draw[thick] (2,0) grid ++(2,1);
-            \draw[thick] (8,1) grid ++(2,1);
+            \coordinate (p1) at (1,2);
+            \coordinate (p2) at (4,3);
+            \coordinate (p3) at (2,0);
+            \coordinate (p4) at (5,0);
+            \coordinate (p5) at (8,1);
 
-            \draw[link] (2.5,2.5) -- (4,3);
-            \draw[link] (5.5,3.5) -- (8,2);
-            \draw[link] (9.5,1.5) -- (7,1);
-            \draw[link] (6.5,0.5) -- (4,0.5);
+            \draw[help lines] (0,0) grid (10,4);
+            \foreach[evaluate={int(\i-1)} as \j] \i in {1,...,5} {
+                \llnode[position={p\i},value={xs[\j]},value font=\ttfamily\small]
+            }
+
+            \draw[link] ($ (p1) + (1.5, 0.5) $) -- ($ (p2) $);
+            \draw[link] ($ (p2) + (1.5, 0.5) $) -- ($ (p3) + (0,1) $);
+            \draw[link] ($ (p3) + (1.5, 0.5) $) -- ($ (p4) + (0,0.5) $);
+            \draw[link] ($ (p4) + (1.5, 0.5) $) -- ($ (p5) $);
         \end{tikzpicture}
     \end{center}
     \vskip4mm
@@ -49,7 +53,7 @@
                 \item Item
                 \item Reference to next node
               \end{itemize}
-        \item Nodes spread across memory
+        \item Nodes scattered across memory
     \end{itemize}
 \end{frame}
 
@@ -62,23 +66,21 @@
     \frametitle{Creating a Linked List}
     \begin{center}
         \begin{tikzpicture}[link/.style={thick,-latex},scale=0.8,transform shape]
+            \coordinate (p1) at (1,2);
+            \coordinate (p2) at (4,3);
+            \coordinate (p3) at (2,0);
+            \coordinate (p4) at (5,0);
+            \coordinate (p5) at (8,1);
+
             \draw[help lines] (0,0) grid (10,4);
-            \draw[thick] (1,2) grid ++(2,1);
-            \draw[thick] (4,3) grid ++(2,1);
-            \draw[thick] (5,0) grid ++(2,1);
-            \draw[thick] (2,0) grid ++(2,1);
-            \draw[thick] (8,1) grid ++(2,1);
+            \foreach \i in {1,...,5} {
+                \llnode[position=p\i,value=\i]
+            }
 
-            \draw[link] (2.5,2.5) -- (4,3) node[midway,font=\tiny\ttfamily,sloped,below]{Next};
-            \draw[link] (5.5,3.5) -- (8,2) node[midway,font=\tiny\ttfamily,sloped,below]{Next};
-            \draw[link] (9.5,1.5) -- (7,0.5) node[midway,font=\tiny\ttfamily,sloped,below]{Next};
-            \draw[link] (6.5,0.5) -- (4,0.5) node[midway,font=\tiny\ttfamily,sloped,below]{Next};
-
-            \node[font=\ttfamily] at (1.5,2.5) {1};
-            \node[font=\ttfamily] at (4.5,3.5) {2};
-            \node[font=\ttfamily] at (8.5,1.5) {3};
-            \node[font=\ttfamily] at (5.5,0.5) {4};
-            \node[font=\ttfamily] at (2.5,0.5) {5};
+            \draw[link] ($ (p1) + (1.5, 0.5) $) -- ($ (p2) $);
+            \draw[link] ($ (p2) + (1.5, 0.5) $) -- ($ (p3) + (0,1) $);
+            \draw[link] ($ (p3) + (1.5, 0.5) $) -- ($ (p4) + (0,0.5) $);
+            \draw[link] ($ (p4) + (1.5, 0.5) $) -- ($ (p5) $);
         \end{tikzpicture}
     \end{center}
     \vskip4mm
