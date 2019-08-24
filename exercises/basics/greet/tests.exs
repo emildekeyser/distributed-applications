@@ -1,24 +1,26 @@
-ExUnit.start()
+defmodule Setup do
+  @script "shared.exs"
 
-file = System.get_env("DA_TESTFILE") || "student.exs"
-Code.load_file(file, __DIR__)
+  def setup(directory \\ ".") do
+    path = Path.join(directory, @script)
+
+    if File.exists?(path) do
+      Code.require_file(path)
+      Shared.setup(__DIR__)
+    else
+      setup(Path.join(directory, ".."))
+    end
+  end
+end
+
+Setup.setup
 
 
 defmodule Tests do
   use ExUnit.Case, async: true
+  import Shared
 
-  data = [
-    { "Abel", "Hello, Abel!" },
-    { "John", "Hello, John!" },
-    { "Ruth", "Hello, Ruth!" },
-  ]
-
-  for { input, expected } <- data do
-    @input input
-    @expected expected
-
-    test "Greeting #{input}" do
-      assert Greet.greet(@input) == @expected
-    end
-  end
+  check that: Greet.greet("Abel"), is_equal_to: "Hello, Abel!"
+  check that: Greet.greet("John"), is_equal_to: "Hello, John!"
+  check that: Greet.greet("Ruth"), is_equal_to: "Hello, Ruth!"
 end
