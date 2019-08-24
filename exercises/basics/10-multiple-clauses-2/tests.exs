@@ -1,23 +1,24 @@
-ExUnit.start()
+defmodule Setup do
+  @script "shared.exs"
 
-file = System.get_env("DA_TESTFILE") || "student.exs"
-Code.load_file(file, __DIR__)
+  def setup(directory \\ ".") do
+    path = Path.join(directory, @script)
 
-
-defmodule Aux do
-  defmacro check(that: block, is_equal_to: expected) do
-    str = Macro.to_string(block)
-    quote do
-      test "#{unquote(str)} should be equal to #{unquote(expected)}" do
-        assert unquote(block) == unquote(expected)
-      end
+    if File.exists?(path) do
+      Code.require_file(path)
+      Shared.setup(__DIR__)
+    else
+      setup(Path.join(directory, ".."))
     end
   end
 end
 
+Setup.setup
+
+
 defmodule Tests do
   use ExUnit.Case, async: true
-  import Aux
+  import Shared
 
 
   check that: Fibonacci.fib(0), is_equal_to: 0
