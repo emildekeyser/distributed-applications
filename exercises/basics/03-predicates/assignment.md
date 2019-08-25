@@ -30,6 +30,9 @@ the character `a`. This is the equivalent of `'a'` in C#/Java/C++.)
 
 ## Task
 
-Write two functions `odd?` and `even?`. Let them be part of a module named `Numbers`.
+Create a file `student.exs` and write two functions `odd?` and `even?`.
+Let them be part of a module named `Numbers`.
 You might have to look up the Elixir syntax for modulo: it differs
 from most other languages.
+
+Run the tests to check your work. Be sure to also look at the solution after you're done.
