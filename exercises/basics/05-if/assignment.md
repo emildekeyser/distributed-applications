@@ -93,3 +93,5 @@ end
 ## Task
 
 Write the function `Numbers.abs(x)` that computes the absolute value of `x`.
+
+Note how we provided two solutions. Make sure to examine them both.
