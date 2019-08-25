@@ -1,4 +1,14 @@
 # Assignment
 
-* Explain typechecking based on arity
-* Write `max/2`, `max/3`, `max/4`.
+Start by reading [this explanation](/docs/compiler-checks.md).
+
+## Task
+
+Write three functions
+
+* `Numbers.maximum/2`
+* `Numbers.maximum/3`
+* `Numbers.maximum/4`
+
+Each must return the greatest of its arguments.
+Make sure to maximize reuse.
