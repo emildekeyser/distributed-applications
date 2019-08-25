@@ -20,13 +20,13 @@ defmodule Tests do
   use ExUnit.Case, async: true
   import Shared
 
-  check that: Sign.sign(1), is_equal_to: 1
-  check that: Sign.sign(2), is_equal_to: 1
-  check that: Sign.sign(5), is_equal_to: 1
-  check that: Sign.sign(100), is_equal_to: 1
-  check that: Sign.sign(0), is_equal_to: 0
-  check that: Sign.sign(-1), is_equal_to: -1
-  check that: Sign.sign(-2), is_equal_to: -1
-  check that: Sign.sign(-5), is_equal_to: -1
-  check that: Sign.sign(-111), is_equal_to: -1
+  check that: Numbers.sign(1), is_equal_to: 1
+  check that: Numbers.sign(2), is_equal_to: 1
+  check that: Numbers.sign(5), is_equal_to: 1
+  check that: Numbers.sign(100), is_equal_to: 1
+  check that: Numbers.sign(0), is_equal_to: 0
+  check that: Numbers.sign(-1), is_equal_to: -1
+  check that: Numbers.sign(-2), is_equal_to: -1
+  check that: Numbers.sign(-5), is_equal_to: -1
+  check that: Numbers.sign(-111), is_equal_to: -1
 end
