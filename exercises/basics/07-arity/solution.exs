@@ -1,4 +1,4 @@
-defmodule Max do
+defmodule Numbers do
   def maximum(a, b) do
     if a > b, do: a, else: b
   end
