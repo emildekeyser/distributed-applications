@@ -47,4 +47,4 @@ Your suggestions will not be committed directly;
 instead, they reach us in the form of a pull request, pending for review. Only
 after we explicitly accept to incorporate your changes will the course material be updated.
 
-Accepted changes will cause an increase in [cake points](https://ucleuvenlimburg.github.io/cakepoints/).
+Accepted changes might cause an increase in [cake points](https://ucleuvenlimburg.github.io/cakepoints/).
