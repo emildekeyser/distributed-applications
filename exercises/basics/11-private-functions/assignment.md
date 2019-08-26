@@ -54,5 +54,5 @@ Note the following:
 * Factorials can grow large very quickly. This is no issue for Elixir:
   contrary to Java, C# or C++, integers are not limited in size. They'll consume
   the bits necessary to faithfully represent the number.
-* Do not use `/` for division: it always produces floating point numbers.
+* Do not use the `/` operator for division: it always produces floating point numbers and the tests expect integers.
   Look up how to perform integer division.
