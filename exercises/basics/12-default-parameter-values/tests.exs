@@ -35,6 +35,7 @@ defmodule Tests do
   check that: Math.range_sum(3, 2), is_equal_to: 5
   check that: Math.range_sum(3, 3), is_equal_to: 3
   check that: Math.range_sum(100, 10), is_equal_to: 5005
+  check that: Math.range_sum(1, 5), is_equal_to: 0
 
   check that: Math.range_sum(0, 0, 1), is_equal_to: 0
   check that: Math.range_sum(1, 0, 1), is_equal_to: 1
