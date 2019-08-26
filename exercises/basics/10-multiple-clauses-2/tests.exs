@@ -20,7 +20,6 @@ defmodule Tests do
   use ExUnit.Case, async: true
   import Shared
 
-
   check that: Fibonacci.fib(0), is_equal_to: 0
   check that: Fibonacci.fib(1), is_equal_to: 1
   check that: Fibonacci.fib(2), is_equal_to: 1
