@@ -1,4 +1,7 @@
 defmodule Util do
-  def range(a, b) when is_number(a) and a <= b, do: [a | range(a + 1, b)]
-  def range(a, _) when is_number(a), do: []
+  def frequencies([]), do: %{}
+  def frequencies([x|xs]) do
+    f = frequencies(xs)
+    Map.put(f, x, Map.get(f, x, 0) + 1)
+  end
 end

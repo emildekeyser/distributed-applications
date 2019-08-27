@@ -20,10 +20,9 @@ defmodule Tests do
   use ExUnit.Case, async: true
   import Shared
 
-  check that: Util.range(0, 0), is_equal_to: [0]
-  check that: Util.range(0, 1), is_equal_to: [0, 1]
-  check that: Util.range(0, 5), is_equal_to: [0, 1, 2, 3, 4, 5]
-  check that: Util.range(3, 5), is_equal_to: [3, 4, 5]
-  check that: Util.range(5, 5), is_equal_to: [5]
-  check that: Util.range(6, 5), is_equal_to: []
+  check that: Util.frequencies([]), is_equal_to: %{}
+  check that: Util.frequencies([:a]), is_equal_to: %{a: 1}
+  check that: Util.frequencies([:a, :a]), is_equal_to: %{a: 2}
+  check that: Util.frequencies([:a, :b]), is_equal_to: %{a: 1, b: 1}
+  check that: Util.frequencies([:a, :b, :b]), is_equal_to: %{a: 1, b: 2}
 end
