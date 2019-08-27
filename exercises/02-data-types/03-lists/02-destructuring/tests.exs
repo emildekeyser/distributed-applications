@@ -41,4 +41,12 @@ defmodule Tests do
   check that: Util.last([3, 4, 5, 6]), is_equal_to: 6
   check that: Util.last([1, 2, 3, 4, 5, 6, 10]), is_equal_to: 10
   check that: Util.last([1, 2, 3, 4, 5, 6, 10, :a]), is_equal_to: :a
+
+  # size
+  check that: Util.size([]), is_equal_to: 0
+  check that: Util.size([:x]), is_equal_to: 1
+  check that: Util.size([:x, :y]), is_equal_to: 2
+  check that: Util.size([1, 2, 3, 4]), is_equal_to: 4
+  check that: Util.size([1, 2, 3, 4, 5]), is_equal_to: 5
+  check that: Util.size([5, 5, 5, 5, 5, 5]), is_equal_to: 6
 end

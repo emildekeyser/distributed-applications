@@ -29,6 +29,7 @@ Write the following functions in a module named `Util`:
 * `second(xs)` returns the second element of the list `xs`.
 * `third(xs)` returns the third element of the list `xs`.
 * `last(xs)` returns the last element of the list `xs`.
+* `size(xs)` returns the size of the list `xs`.
 
 Each of these functions can assume that the list
 does contain the necessary number of elements.

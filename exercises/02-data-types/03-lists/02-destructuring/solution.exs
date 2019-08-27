@@ -7,4 +7,7 @@ defmodule Util do
 
   def last([x]), do: x
   def last([_|xs]), do: last(xs)
+
+  def size([]), do: 0
+  def size([_|xs]), do: 1 + size(xs)
 end
