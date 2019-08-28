@@ -5,6 +5,7 @@ layout: default
 
 ## Topics
 
+* [Functional programming](functional-programming.md)
 * [Compile-time checks](compiler-checks.md)
 * [Atoms](atoms.md)
 * [Lists](lists.md)
