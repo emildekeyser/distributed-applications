@@ -23,4 +23,4 @@ The shell has a number of features that might help you in your Elixir related en
 
 ## Task
 
-Launch the Elixir shell and play around for it, for at least a whole jiffy.
+Launch the Elixir shell and play around for it, for at least a whole [moment](https://en.wikipedia.org/wiki/Moment_(time)).
