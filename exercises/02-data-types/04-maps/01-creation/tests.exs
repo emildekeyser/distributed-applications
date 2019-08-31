@@ -25,4 +25,6 @@ defmodule Tests do
   check that: Util.frequencies([:a, :a]), is_equal_to: %{a: 2}
   check that: Util.frequencies([:a, :b]), is_equal_to: %{a: 1, b: 1}
   check that: Util.frequencies([:a, :b, :b]), is_equal_to: %{a: 1, b: 2}
+  check that: Util.frequencies([:a, :b, :b, :a]), is_equal_to: %{a: 2, b: 2}
+  check that: Util.frequencies([:a, :b, :b, :a, :c]), is_equal_to: %{a: 2, b: 2, c: 1}
 end
