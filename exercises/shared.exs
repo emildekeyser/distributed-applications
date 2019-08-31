@@ -36,7 +36,7 @@ defmodule Shared do
   def setup(exercise_directory) do
     ExUnit.start()
 
-    file = System.get_env("DA_TESTFILE") || "student.exs"
+    file = System.get_env("STUDENT") || "student.exs"
     path = Path.join(exercise_directory, file)
 
     if not File.exists?(path) do
