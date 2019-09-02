@@ -48,4 +48,4 @@ until either the puzzle is solved or you're stuck.
 This is known as the fixed point; you can also
 interpret it as the "point of no progress."
 
-Another movie example of a fixed point is [Predestination](https://www.imdb.com/title/tt2397535/?ref_=nv_sr_1?ref_=nv_sr_1).
+Another example of a fixed point (according to my interpretation that is) is [the movie Predestination](https://www.imdb.com/title/tt2397535/?ref_=nv_sr_1?ref_=nv_sr_1).
