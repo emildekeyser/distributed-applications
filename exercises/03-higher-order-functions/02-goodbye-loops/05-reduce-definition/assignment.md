@@ -48,7 +48,8 @@ Now, regardless of how many items our list contains, the result will always
 be a sensible value. Expressing this operation in terms of `reduce` gives
 
 ```elixir
-reduce([1, 2, 3, 4, 5], 0, fn x, y -> x + y end)
+# &+/2 refers to the binary + operator
+reduce([1, 2, 3, 4, 5], 0, &+/2)
 ```
 
 A more general way of interpreting `reduce` is as a stepwise accumulator.
