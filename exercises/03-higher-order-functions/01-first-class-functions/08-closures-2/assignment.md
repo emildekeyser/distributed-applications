@@ -1,14 +1,33 @@
 # Assignment
 
-You are given the function `Functions.fixedpoint(f, x)`.
+Computing a square root is not easy if you can't rely on a built-in
+square root function. In fact, as far as we know, the only way
+to compute a square root using only more basic operations (`+`, `-`, `*` and `/`)
+is to implement an algorithm that starts with a "guess"
+which is then gradually improved. You can compare it to a game of higher/lower:
+if you have to guess a number between 0 and 100, you first guess 50, which
+is then "verified", which tells you if you have to look further
+in the interval 0-49 or 51-100. The difference with the square root operation
+is that you aren't looking for an integer, but for an infinitely long real number.
+This means that, if the actual square root does not happen to be an integer, you'll actually
+never be able to find the exact square root: you can only get arbitrarily close.
+
+The reason a computer seems to be able to compute a square root is simply
+because it only keeps track of a limited number of digits in a real number.
+In other words, a processor can compute a square number that is precise up to this
+number of digits.
+
+## Task
+
+You are given the function `Functions.fixedpoint(f, x)` which works as described in a previous exercise.
 Write a function `Math.sqrt(x)` that computes the square root making use of `fixedpoint`.
-For this, rely on the [Newton-Rhapson method](https://en.wikipedia.org/wiki/Newton%27s_method):
+For this you should rely on the [Newton-Rhapson method](https://en.wikipedia.org/wiki/Newton%27s_method).
 
 Say you want to compute the square root of `x`. The method works by computing a series
 of numbers `y0`, `y1`, `y2`, ... which, as it goes on, converges to the square root of `x`.
 In other words, you found the square root when you encounter two consecutive `y` values equal to each other.
 
-The formule to find the next `y` in line is
+The formula to find the next `y` in line is
 
 ```text
                y^2 - x
