@@ -19,7 +19,6 @@ Setup.setup
 defmodule Tests do
   use ExUnit.Case, async: true
   import Shared
-  import Integer
 
 
   check that: Grades.passed_percentage([1]), is_equal_to: 0
