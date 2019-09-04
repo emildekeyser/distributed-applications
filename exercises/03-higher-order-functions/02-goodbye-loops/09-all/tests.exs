@@ -28,6 +28,9 @@ defmodule Tests do
   check that: Grades.all_passed?([10, 11]), is_equal_to: true
   check that: Grades.all_passed?([10, 11, 18]), is_equal_to: true
   check that: Grades.all_passed?([20]), is_equal_to: true
+  check that: Grades.all_passed?([:na]), is_equal_to: true
   check that: Grades.all_passed?([10, 11, 5, 12]), is_equal_to: false
   check that: Grades.all_passed?([10, 11, 12, 8]), is_equal_to: false
+  check that: Grades.all_passed?([10, 11, 12, :na, 8]), is_equal_to: false
+  check that: Grades.all_passed?([10, 11, 12, :na]), is_equal_to: true
 end
