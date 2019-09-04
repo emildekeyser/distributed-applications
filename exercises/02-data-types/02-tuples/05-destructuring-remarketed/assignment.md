@@ -66,4 +66,3 @@ which simplification rules we expect you to implement.
 
 We suggest a stepwise approach:
 the tests are grouped in steps to allow you to focus on one group at the time.
-
