@@ -21,16 +21,16 @@ defmodule Tests do
   import Shared
 
 
-  check that: Util.reduce([], 0, fn x, y -> x + y end), is_equal_to: 0
-  check that: Util.reduce([1], 0, fn x, y -> x + y end), is_equal_to: 1
-  check that: Util.reduce([1, 1], 0, fn x, y -> x + y end), is_equal_to: 2
-  check that: Util.reduce([1, 2], 0, fn x, y -> x + y end), is_equal_to: 3
-  check that: Util.reduce([1, 2, 3], 0, fn x, y -> x + y end), is_equal_to: 6
-  check that: Util.reduce([1, 2, 3], 5, fn x, y -> x + y end), is_equal_to: 11
-  check that: Util.reduce([1, 2, 3], 1, fn x, y -> x * y end), is_equal_to: 6
-  check that: Util.reduce([2, 3], 1, fn x, y -> x * y end), is_equal_to: 6
-  check that: Util.reduce([2, 3, 4], 1, fn x, y -> x * y end), is_equal_to: 24
-  check that: Util.reduce([2, 3, 4], 0, fn x, y -> x * y end), is_equal_to: 0
+  check that: Util.reduce([], 0, &+/2), is_equal_to: 0
+  check that: Util.reduce([1], 0, &+/2), is_equal_to: 1
+  check that: Util.reduce([1, 1], 0, &+/2), is_equal_to: 2
+  check that: Util.reduce([1, 2], 0, &+/2), is_equal_to: 3
+  check that: Util.reduce([1, 2, 3], 0, &+/2), is_equal_to: 6
+  check that: Util.reduce([1, 2, 3], 5, &+/2), is_equal_to: 11
+  check that: Util.reduce([1, 2, 3], 1, &*/2), is_equal_to: 6
+  check that: Util.reduce([2, 3], 1, &*/2), is_equal_to: 6
+  check that: Util.reduce([2, 3, 4], 1, &*/2), is_equal_to: 24
+  check that: Util.reduce([2, 3, 4], 0, &*/2), is_equal_to: 0
   check that: Util.reduce([true, true, true], true, fn x, y -> x && y end), is_equal_to: true
   check that: Util.reduce([true, true, true, true, true], true, fn x, y -> x && y end), is_equal_to: true
   check that: Util.reduce([true, false, true], true, fn x, y -> x && y end), is_equal_to: false
