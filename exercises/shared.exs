@@ -1,9 +1,19 @@
 defmodule Shared do
+  defp format(xs) when is_list(xs) do
+    xs
+    |> Enum.map(&format/1)
+    |> Enum.join(", ")
+    |> (fn s -> "[#{s}]" end).()
+  end
+  defp format(x) do
+    inspect(x)
+  end
+
   defmacro check(that: block, is_equal_to: expected) do
     str = Macro.to_string(block)
 
     quote do
-      test "#{unquote(str)} should be equal to #{Kernel.inspect(unquote(expected))}" do
+      test "#{unquote(str)} should be equal to #{unquote(format(expected))}" do
         assert unquote(block) == unquote(expected)
       end
     end
@@ -13,7 +23,7 @@ defmodule Shared do
     str = Macro.to_string(block)
 
     quote do
-      test "#{unquote(str)} should raise a #{Kernel.inspect(unquote(exception))}" do
+      test "#{unquote(str)} should raise a #{unquote(format(exception))}" do
 
         assert_raise(unquote(exception), fn -> unquote(block) end)
       end
@@ -45,4 +55,3 @@ defmodule Shared do
     Code.load_file(file, exercise_directory)
   end
 end
-
