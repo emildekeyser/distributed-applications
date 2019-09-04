@@ -10,3 +10,6 @@ an array containing
 
 `remove_na(grades)` should remove all occurrences of `:na`,
 leaving only actual grades.
+
+Make sure to rely on Elixir's standard library's `filter`,
+not your own version.
