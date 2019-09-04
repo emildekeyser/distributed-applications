@@ -13,4 +13,3 @@ For those in need of some clues:
     In other words, it should take the form `fn _, acc -> ... end`.
   * In this context, `acc` corresponds to the number of items already processed. This value should increase by one per element. So, given an `acc`, the combiner
     function should return `acc + 1`.
-
