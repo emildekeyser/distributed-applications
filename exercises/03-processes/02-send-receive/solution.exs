@@ -6,6 +6,7 @@ defmodule Exercise do
   end
 end
 
-pid = spawn(&Exercise.say/0)
+pid = spawn(&Exercise.print/0)
 
 send(pid, "Hello")
+:timer.sleep(1000)

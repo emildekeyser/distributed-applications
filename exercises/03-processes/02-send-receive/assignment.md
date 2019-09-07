@@ -63,3 +63,4 @@ when we send it a message, will print this message to the console.
 * Next, spawn a process with `print` as its starting point.
   Be sure to store the pid `spawn` returns in a variable.
   Using this pid, `send` a string to the `print` process.
+* Remember to put a `:timer.sleep(1000)` at the end.
