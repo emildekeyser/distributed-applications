@@ -36,5 +36,5 @@ If we compute the differences, we get
 2500
 ```
 
-Looking for the most negative transaction yields the fifth transaction of `-700`. It has index `4`, which
-therefore is the value that should be returned by `largest_expense_index`.
+Looking for the most negative transaction yields the fifth transaction, i.e., `-700`. It has index `4`, which
+is therefore the value that should be returned by `largest_expense_index`.
