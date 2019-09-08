@@ -59,15 +59,16 @@ You can of course also rely on lambdas:
 spawn( fn -> IO.puts("I pass the butter") end )
 ```
 
-This creates a new process whose [only purpose](https://youtu.be/X7HmltUWXgs?t=53) is to print "I pass the butter."
+This creates a new process whose [only purpose in life](https://youtu.be/X7HmltUWXgs?t=53) is to print "I pass the butter."
 
 Add code that spawns two processes:
 
 * One process must print "foo" 10&times;.
 * One process must print "bar" 10&times;.
 
-At the end, add `:timer.sleep(1000)` to make sure the two spawned processes get sufficient time
+When the "main process" ends, all other processes go down with it. To counteract this,
+add `:timer.sleep(1000)` at the end of the script to make sure the two spawned processes get sufficient time
 to do their thing.
 
-Run the code multiple times. You should be able a change in the order in which `foo` and `bar` get printed.
+Run the code multiple times. You should be able to observe a change in the order in which `foo` and `bar` get printed.
 This is due that no guarantees are given as to when each process gets to runs.
