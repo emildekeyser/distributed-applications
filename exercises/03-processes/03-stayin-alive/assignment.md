@@ -40,8 +40,17 @@ def infinite_loop() do
 end
 ```
 
-## Task
+## Task 1
 
-Update the `print` function from the previous exercise so that
-the process remains alive. Send multiple strings to it
-and check that they're all being written to the screen.
+Take your solution from the previous exercise (`print`)
+and update it as follows:
+
+* You spawned only one `print` process: make sure to keep it that way.
+* You sent only one message: change this so that multiple message are sent to the `print` process.
+
+Run it. Only the first message should be printed.
+
+## Task 2
+
+Now update the `print` function so that the process remains alive and does not simply die after having printed one single message.
+Do this by having `print` call itself at the end of its body, thereby creating an infinite loop. Now check that *all* messages are indeed printed.
