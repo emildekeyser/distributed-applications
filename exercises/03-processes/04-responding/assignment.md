@@ -7,7 +7,7 @@ are forcibly ended. For example:
 ```elixir
 defmodule Exercise do
     def foo() do
-        # Random stuff that takes a while
+        # Random time consuming stuff
         drainage!()
         drinks_milkshake()
         throws_bowling_balls_around()
