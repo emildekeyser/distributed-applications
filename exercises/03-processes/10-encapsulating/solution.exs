@@ -1,0 +1,42 @@
+defmodule Counter do
+  defp counter(current \\ 0) do
+    receive do
+      :inc ->
+        counter(current + 1)
+      :dec ->
+        counter(current - 1)
+      {:get, sender_pid} ->
+        send(sender_pid, current)
+        counter(current)
+    end
+  end
+
+  def create() do
+    spawn( &counter/0 )
+  end
+
+  def inc(counter_pid) do
+    send(counter_pid, :inc)
+  end
+
+  def dec(counter_pid) do
+    send(counter_pid, :dec)
+  end
+
+  def get(counter_pid) do
+    send(counter_pid, {:get, self()})
+
+    receive do
+      answer -> answer
+    end
+  end
+end
+
+counter = Counter.create()
+Counter.inc(counter)
+Counter.inc(counter)
+Counter.inc(counter)
+IO.puts(Counter.get(counter))
+
+Counter.dec(counter)
+IO.puts(Counter.get(counter))
