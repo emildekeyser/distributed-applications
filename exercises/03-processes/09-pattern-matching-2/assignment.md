@@ -28,6 +28,11 @@ class Counter
     {
         return this.current;
     }
+
+    public void Reset()
+    {
+        this.current = 0;
+    }
 }
 ```
 

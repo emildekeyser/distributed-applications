@@ -5,6 +5,8 @@ defmodule Counter do
         counter(current + 1)
       :dec ->
         counter(current - 1)
+      :reset ->
+        counter(0)
       {:get, sender_pid} ->
         send(sender_pid, current)
         counter(current)
@@ -29,3 +31,11 @@ send(pid, {:get, self()})
 receive do
   answer -> IO.puts(answer)
 end
+
+send(pid, :reset)
+
+send(pid, {:get, self()})
+receive do
+  answer -> IO.puts(answer)
+end
+
