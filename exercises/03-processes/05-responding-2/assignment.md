@@ -1,35 +1,26 @@
 # Assignment
 
-In the last exercise, we focused on sending messages from child to parent.
-We made this possible by having the process send its pid
-to the child upon creation.
+Right now, the parent process send a meaningful message to the `print` child
+process, which in turn sends back an arbitrary value to indicate
+it's done printing. Let's have the child process actually respond something interesting.
 
-In this exercise, we investigate a second, more flexible, approach.
-Say our application grows. We create many processes,
-each of which is interested in writing things to screen.
-They all want to go through our `print` process.
+Let's create a magic eight ball process. It works as follows:
+when you send it a question (a string), it answers with either `:yes`, `:no`, or `:maybe`.
+Since it is outside the scope of this course to develop future predicting software,
+we'll limit ourselves to a simpler -- yet still just as convincing -- implementation.
+To determine what to answer, compute the length of the question and divide it by three.
 
-Right now, the `print` process always sends its "I'm done" responses
-to the same process, the one that spawned the `print` process.
-This won't do: we want to response to be send back
-to the process who sent the message.
-
-Remember how we said you could `send` any data you wanted?
-Until now, you've simply sent over a string.
-Why not change that to a tuple `{pid, message}`? Receiving such
-a message can be achieved as follows:
-
-```elixir
-receive do
-    { sender_pid, message } -> ...
-end
-```
+* If the remainder is `0`, answer `:yes`.
+* If the remainder is `1`, answer `:maybe`.
+* If the remainder is `2`, answer `:no`.
 
 ## Task
 
-We build further on the `print` exercise.
-For now, we'll still work with only two processes: the parent process and the `print` child process.
+Create a function `magic_eight_ball` which, upon receiving a question (a string)
+sends back `:yes`, `:maybe` or `:no`, following the rules laid out above.
 
-* Remove the changes made in the previous exercise: turn `print` back into a nullary function. Update the `spawn` and the recursive `print` call.
-* Change the `receive` expression so that it expects tuples instead of just strings.
-* Update the N `send`s.
+Test your implementation by
+
+* spawning the `magic_eight_ball` process;
+* sending it multiple questions ;
+* receiving the answers and printing them out.

@@ -1,34 +1,35 @@
-defmodule Exercise do
-  def print() do
+defmodule Oracle do
+  # Module constant
+  @answers { :yes, :maybe, :no }
+
+  defp get_answer_for(question) do
+    elem(@answers, rem(String.length(question), 3))
+  end
+
+  def magic_eight_ball(parent_pid) do
     receive do
-      {sender, message} ->
-        IO.puts(message)
-        send(sender, :success)
+      question -> send(parent_pid, get_answer_for(question))
     end
 
-    print()
+    magic_eight_ball(parent_pid)
   end
 end
 
-pid = spawn(&Exercise.print/0)
 
-send(pid, {self(), "a"})
-send(pid, {self(), "b"})
-send(pid, {self(), "c"})
-send(pid, {self(), "d"})
+parent_pid = self()
+pid = spawn( fn -> Oracle.magic_eight_ball(parent_pid) end )
 
+send(pid, "")
 receive do
-  _ -> nil
+  answer -> IO.puts(answer) # Should return :yes
 end
 
+send(pid, ".")
 receive do
-  _ -> nil
+  answer -> IO.puts(answer) # Should return :maybe
 end
 
+send(pid, "..")
 receive do
-  _ -> nil
-end
-
-receive do
-  _ -> nil
+  answer -> IO.puts(answer) # Should return :no
 end
