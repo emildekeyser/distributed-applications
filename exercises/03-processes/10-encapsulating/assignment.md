@@ -26,6 +26,13 @@ send(pid, {:get, self()})
 receive do
   answer -> IO.puts(answer)
 end
+
+send(pid, :reset)
+
+send(pid, {:get, self()})
+receive do
+  answer -> IO.puts(answer)
+end
 ```
 
 Write the necessary functions so that the above can be rewritten as
@@ -39,5 +46,8 @@ Counter.inc(counter)
 IO.puts(Counter.get(counter))
 
 Counter.dec(counter)
+IO.puts(Counter.get(counter))
+
+Counter.reset(counter)
 IO.puts(Counter.get(counter))
 ```
