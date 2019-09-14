@@ -7,9 +7,7 @@
                             process/.style={draw,drop shadow,fill=red!50},
                             process header/.style={font=\sc\bf\Large,red,opacity=0.5},
                             hardware/.style={drop shadow,fill=magenta!50},
-                            cpu/.style={draw,minimum width=1cm,minimum height=1cm,drop shadow,fill=magenta!75},
-                            note/.style={drop shadow,fill=green!50,inner sep=5mm},
-                            note arrow/.style={-latex,ultra thick}]
+                            cpu/.style={draw,minimum width=1cm,minimum height=1cm,drop shadow,fill=magenta!75}]
             \node[os,minimum width=10cm,minimum height=1cm] (os) {Operating System};
             \coordinate (process a) at ($ (os.south west) + (0,-0.2) $);
             \coordinate (process b) at ($ (os.south west) ! 0.35 ! (os.south east) + (0,-0.2) $);

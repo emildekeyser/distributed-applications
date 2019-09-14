@@ -19,6 +19,12 @@
   value font/.initial={\ttfamily}
 }
 
+\tikzset{
+    note/.style={drop shadow,fill=green!50,inner sep=5mm},
+    note2/.style={drop shadow,fill=cyan!50,inner sep=5mm},
+    note arrow/.style={-latex,ultra thick}
+}
+
 \newcommand{\envelope}[1][1]{
     {
         \pgfkeys{/envelope/.cd,#1}
@@ -32,6 +38,14 @@
 }
 
 \newcommand{\csharp}{C$^\sharp$}
+
+\newcommand{\codeunderlinex}[2][]{
+  \codeunderline[name center=#2,#1]{#21}{#22}
+}
+
+\newcommand{\codeoverlinex}[2][]{
+  \codeoverline[name center=#2,#1]{#21}{#22}
+}
 
 \begin{document}
 
@@ -101,6 +115,103 @@
 \begin{frame}
     \frametitle{Message Passing}
     \code[language=elixir,font=\small]{message-passing.exs}
+    \begin{tikzpicture}[overlay,remember picture]
+        \only<2>{
+            \codeoverlinex{spawn}
+            \node[note,anchor=south west] at ($ (spawn1) + (0,1) $) {Creates a new process};
+        }
+        \only<3>{
+            \codeunderlinex{child}
+            \node[note2,anchor=north west] (note) at ($ (child1) + (0,-0.75) $) {New process executes this function};
+            \draw[note arrow] (note) -- (child);
+            \codeoverlinex{drive}
+            \node[note,anchor=south west] (note) at ($ (drive1) + (0,0.75) $) {Meanwhile, parent process drives.};
+            \draw[note arrow] (note) -- (drive);
+        }
+        \only<4>{
+            \codeunderlinex{annoy}
+            \node[note2,anchor=north west] (note) at ($ (annoy1) + (0,-0.75) $) {Child process prints message};
+            \draw[note arrow] (note) -- (annoy);
+            \codeunderlinex{drive}
+            \node[note,anchor=north west] (note) at ($ (drive1) + (0,-0.75) $) {Goes vroom!};
+            \draw[note arrow] (note) -- (drive);
+        }
+        \only<5>{
+            \codeunderlinex{receive}
+            \node[note2,anchor=north west] (note) at ($ (receive) + (0,-0.75) $) {Child process checks mailbox};
+            \draw[note arrow] (note) -- (receive);
+            \codeunderlinex{drive}
+            \node[note,anchor=north west] (note) at ($ (drive1) + (0,-0.75) $) {Vrooooooom!};
+            \draw[note arrow] (note) -- (drive);
+        }
+        \only<6>{
+            \codeoverlinex{timeout}
+            \node[note2,anchor=south west] (note) at ($ (timeout) + (0,0.75) $) {
+                \parbox{8cm}{
+                    Normally, \texttt{receive} waits for a message to arrive indefinitely. In this case,
+                    we are dealing with an impatient process. It waits at most 1ms for a message to arrive.
+                }
+            };
+            \draw[note arrow] (note) -- (timeout);
+            \codeunderlinex{drive}
+            \node[note,anchor=north west] (note) at ($ (drive1) + (0,-0.75) $) {EEeeeeeeeeeeee!};
+            \draw[note arrow] (note) -- (drive);
+        }
+        \only<7>{
+            \codeoverlinex{rec}
+            \node[note2,anchor=south] (note) at ($ (rec) + (0,0.75) $) {
+                \parbox{5cm}{
+                    No \texttt{:arrive} message yet. Function calls itself.
+                }
+            };
+            \draw[note arrow] (note) -- (rec);
+            \codeunderlinex{drive}
+            \node[note,anchor=north west] (note) at ($ (drive1) + (0,-0.75) $) {(Forgot Grampa)};
+            \draw[note arrow] (note) -- (drive);
+        }
+        \only<8>{
+            \codeunderlinex{annoy}
+            \node[note2,anchor=north] (note) at ($ (annoy) + (0,-0.75) $) {
+                Back to square one.
+            };
+            \draw[note arrow] (note) -- (annoy);
+            \codeunderlinex{drive}
+            \node[note,anchor=north west] (note) at ($ (drive1) + (0,-0.75) $) {Moorv moorv moorv!};
+            \draw[note arrow] (note) -- (drive);
+        }
+        \only<9>{
+            \codeunderlinex{child}
+            \codeoverlinex{rec}
+            \node[note2,anchor=north west] (note) at ($ (child) + (0,-0.5) $) {
+                Loop goes on and on.
+            };
+            \draw[note arrow] (note) -- (child);
+            \draw[note arrow] (note) -- (rec);
+            \codeunderlinex{drive}
+            \node[note,anchor=north west] (note) at ($ (drive1) + (0,-0.75) $) {Arrives back home.};
+            \draw[note arrow] (note) -- (drive);
+        }
+        \only<10>{
+            \codeoverlinex{send}
+            \node[note,anchor=south west] (note) at ($ (send1) + (0,0.75) $) {Tells child process we arrived.};
+            \draw[note arrow] (note) -- (send);
+        }
+        \only<11>{
+            \codeunderlinex{receive}
+            \node[note2,anchor=north west] (note) at ($ (receive) + (0,-0.75) $) {Child process checks mailbox once more};
+            \draw[note arrow] (note) -- (receive);
+        }
+        \only<12>{
+            \codeunderlinex{msg}
+            \node[note2,anchor=north west] (note) at ($ (msg) + (0,-0.75) $) {It finds an \texttt{:arrive} message!};
+            \draw[note arrow] (note) -- (msg);
+        }
+        \only<13>{
+            \codeunderlinex{finally}
+            \node[note2,anchor=north] (note) at ($ (finally) + (0,-0.75) $) {Emits final cry. Child process ends. Silence at last.};
+            \draw[note arrow] (note) -- (finally);
+        }
+    \end{tikzpicture}
 \end{frame}
 
 
