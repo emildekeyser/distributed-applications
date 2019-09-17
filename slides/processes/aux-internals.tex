@@ -57,10 +57,11 @@
 \begin{frame}
     \frametitle{Internals}
     \begin{itemize}
-        \item Virtual Machine lives in single OS process
+        \item BEAM Virtual Machine lives in single OS process
         \item It creates $N$ threads on a machine with $N$ cores
-        \item Processes are distributed among these threads
-        \item Processes run "in bits"
-        \item Cooperative "multithreading" makes it efficient
+        \item Each threads runs a scheduler
+        \item Processes are distributed among these schedulers
+        \item Schedulers determine which processes runs
+        \item Cooperative "multi-threading" makes it efficient
     \end{itemize}
 \end{frame}
