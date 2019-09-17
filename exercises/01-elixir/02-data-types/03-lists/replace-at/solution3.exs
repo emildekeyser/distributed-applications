@@ -1,4 +1,4 @@
-defmodule Exercise do
+defmodule Util do
   def replace_at(xs, index, y) do
     xs
     |> Enum.with_index()
