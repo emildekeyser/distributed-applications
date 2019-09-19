@@ -98,7 +98,7 @@ It returns the old value, so don't be surprised when you the value "false" . Now
 {% raw %}
 ```elixir
 {:EXIT, #PID<0.119.0>,
-{ %RuntimeError{message: "uh oh"},
+{%RuntimeError{message: "uh oh"},
 [{:erl_eval, :do_apply, 6, [file: 'erl_eval.erl', line: 678]}]}}
 ```
 {% endraw %}
