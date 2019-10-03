@@ -52,5 +52,7 @@ Run it. Only the first message should be printed.
 
 ## Task 2
 
-Now update the `print` function so that the process remains alive and does not simply die after having printed one single message.
-Do this by having `print` call itself at the end of its body, thereby creating an infinite loop. Now check that *all* messages are indeed printed.
+Now update the `print` function so that the process remains alive and does not
+simply die after having printed one single message.  Do this by having `print`
+call itself at the end of its body, thereby creating an infinite loop. Now
+check that *all* messages are indeed printed.
